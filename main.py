@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from src import network, walkers, simulator
+from src.network import network
+from src.walkers import walkers 
+from src.simulator import simulation
 
 def main():
     pars = {

@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*
 
 import numpy as np
-from . import network
-from . import walkers
+import csv
+from .network import network
+from .walkers import walkers
 
 class simulation(network):
 
@@ -138,4 +139,4 @@ class simulation(network):
 
             curr = new_loc
 
-        return new_loc-
+        return new_loc

@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from . import network
+from .network import network
+
 
 class walkers(network):
     """
