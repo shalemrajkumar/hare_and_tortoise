@@ -1,0 +1,30 @@
+{
+  "timestamp": "2025-08-17T05:15:59.983877",
+  "dimensions": [
+    4,
+    4
+  ],
+  "dilution": 0.2,
+  "iterations": 100,
+  "diameter": 3,
+  "start": [
+    1,
+    1
+  ],
+  "target": [
+    1,
+    3
+  ],
+  "agents": {
+    "turtle": {
+      "count": 5,
+      "steps_per_move": 1,
+      "step_length": 1
+    },
+    "rabbit": {
+      "count": 1,
+      "steps_per_move": 1,
+      "step_length": 2
+    }
+  }
+}

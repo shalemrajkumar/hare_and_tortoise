@@ -255,7 +255,7 @@ class Simulation(Network):
             if Type != 'gif':
                 anim.save(f'{self.timestamp}.mp4')
             else:
-                writer = animation.PillowWriter(fps=30,
+                writer = animation.PillowWriter(fps=120,
                                 metadata=dict(artist='Me'),
                                 bitrate=1800)
                 anim.save(f'{self.timestamp}.gif', writer=writer)

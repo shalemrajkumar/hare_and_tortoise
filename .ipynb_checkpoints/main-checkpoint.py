@@ -12,12 +12,12 @@ def main():
     }
 
     # Initialize the simulation
-    sim = Simulation(dim=(4, 4), dilution=0.2, total_agents=2, seed=42, truely_random=False, pars=pars)
+    sim = Simulation(dim=(4, 4, 4), dilution=0, total_agents=2, seed=42, truely_random=False, pars=pars)
     
     ## simulate 100 iterations of random walk with same parameters
     sim.simulate(100, log_paths=True)
 
-    sim.visualize_sim(iteration=3, save=True, Type='mp4')
+    sim.visualize_sim(save=True, Type='gif')
 
 
 if __name__ == "__main__":

@@ -1,0 +1,7 @@
+### project gitignore file
+
+# Ignore backup files
+.bak/
+
+# Ignore temporary files
+test.ipynb

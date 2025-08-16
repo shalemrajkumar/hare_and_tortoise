@@ -12,12 +12,23 @@ class Network:
     def __init__(self, dim=(10, 10), dilution=0.0, seed=None):
         """
         Initialize the network and diameter.
+        Args:
+            dim (tuple): Dimensions of the lattice (e.g., (10, 10) for a 2D lattice).
+            dilution (float): Probability of dropping edges (0.0 means no dilution).
+            seed (int, optional): Random seed for reproducibility.
         """
         self.dim = dim
         self.dilution = dilution
         self.seed = seed
         self.coordinates = self._generate_coordinates()
         self.adj = self.nd_lattice()
+
+        if np.prod(self.dim) > 1000:
+            self.dia = self.get_diameter_node_via_bfs()
+            print("using bfs to assign some  distinct initial and target nodes not necessarly diameter")
+
+        else:
+            self.dia = self.get_diameter_node()
             
         print(f"Initialized network with dimensions {self.dim}")
 
@@ -38,6 +49,9 @@ class Network:
     def nd_lattice(self):
         """
         Generate adjacency matrix for an N-dimensional lattice with optional dilution.
+        
+        Returns:
+            A: Symmetric adjacency matrix (NxN) as a 2D numpy array.
         """
         if self.seed is not None:
             np.random.seed(self.seed)
@@ -64,13 +78,17 @@ class Network:
 
 
 
-    def get_diameter_node(self, adj):
+    def get_diameter_node(self):
         """
         Finds the diameter and coordinates in the nD lattice of the given network.
-    
+        
+        Returns:
+            dia: Diameter of the network.
+            start_coord: Coordinates of the starting node.
+            end_coord: Coordinates of the ending node.
         """
         # Calculate shortest paths using Floyd-Warshall
-        dist_matrix = shortest_path(adj, method="FW", directed=False, unweighted=True)
+        dist_matrix = shortest_path(self.adj, method="FW", directed=False, unweighted=True)
 
         # Handle disconnected components
         dist_matrix[~np.isfinite(dist_matrix)] = -1
@@ -98,6 +116,12 @@ class Network:
     
         """
         Perform BFS to find the farthest node from the given start node.
+        Args:
+            adj (np.ndarray): Adjacency matrix of the graph.
+            start_node (int): Index of the starting node.
+        Returns:
+            farthest_node (int): Index of the farthest node from the start.
+            distances (np.ndarray): Array of shortest distances from start_node to all other nodes.
         """
         n = adj.shape[0]
         distances = -1 * np.ones(n, dtype=int)  # Initialize distances as -1 (unvisited)
@@ -117,20 +141,23 @@ class Network:
     def get_diameter_node_via_bfs(self):
         """
         Finds the diameter and coordinates in the nD lattice of the given network.
-        
+        Args:
+            None
+        Returns:
+            dia (tuple): Tuple containing coordinates of starting and ending nodes of the diameter.
         """
         total_nodes = np.prod(self.dim)
         adj = self.adj
         
-        # Start from an arbitrary node (e.g., node 0)
+        # Step 1: Start from an arbitrary node (e.g., node 0)
         start_node = 0
         farthest_node_1, _ = self.bfs_farthest_node(adj, start_node)
         
-        # Find the farthest node from `farthest_node_1`
+        # Step 2: Find the farthest node from `farthest_node_1`
         farthest_node_2, distances = self.bfs_farthest_node(adj, farthest_node_1)
         diameter_length = distances[farthest_node_2]  # Diameter of the graph
         
-        # Convert linear indices to N-dimensional coordinates
+        # Step 3: Convert linear indices to N-dimensional coordinates
         offsets = np.cumprod((1,) + self.dim[:-1])
         coord_1 = np.unravel_index(farthest_node_1, self.dim)
         coord_2 = np.unravel_index(farthest_node_2, self.dim)
@@ -139,10 +166,6 @@ class Network:
         return diameter_length, np.array(coord_1), np.array(coord_2)
 
     def adj_gen(self, adj, i, n):
-        """
-        super cool n step walker adj generator
-
-        """
     
         ## base case
         if i == n:
