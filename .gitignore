@@ -1,7 +1,16 @@
 ### project gitignore file
 
 # Ignore backup files
-.bak/
+bak/
+
+# ipython checkpoints
+.ipynb_checkpoints/
+
+# Ignore Python bytecode files
+*.pyc
+
+# Ignore Python cache directories
+__pycache__/
 
 # Ignore temporary files
 test.ipynb
