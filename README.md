@@ -55,8 +55,8 @@ This project simulates random walkers on diluted lattices with real-time visuali
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/walker-simulation.git
-cd walker-simulation
+git clone https://github.com/shalemrajkumar/hare_and_tortoise.git
+cd hare_and_tortoise
 
 # Install dependencies
 pip install -r requirements.txt
@@ -78,7 +78,6 @@ We love contributions! Here's how to get started:
 6. 🚀 Push to branch (`git push origin feature/amazing-feature`)
 7. 🎉 Open a Pull Request
 
-```
 
 ## 📄 License
 
