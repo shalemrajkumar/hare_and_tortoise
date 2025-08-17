@@ -19,13 +19,22 @@
 
 ### 🏛️ SPINS, GAMES AND NETWORKS Workshop
 
-<img src="media/sgn_logo.png" alt="SGN 2024" width="200"/>
+<img src="media/workshop_header_v4.png" alt="SGN 2024" width="700"/>
 
 *Part of SGN 2024 workshop series*
 
 </div>
 
-![Main Demo](media/README_20250817010801037.png)
+
+
+
+<div align="center">
+
+<img src="media/README_20250817010801037.png" width="400">
+
+
+</div>
+
 ### 🎯 Overview
 
 This project simulates random walkers on diluted lattices with real-time visualization capabilities. Developed as part of **SPINS, GAMES AND NETWORKS** ([SGN 2024](https://www.imsc.res.in/~sitabhra/meetings/sgn24/)) workshop at The Institute of Mathematical Sciences (IMSc), Chennai.
