@@ -9,7 +9,7 @@
 
 **A random walker simulation with varying steps and real-time visualization in 2D or 3D**
 
-[🚀 Demo](#demo) • [📦 Installation](#installation) • [🎮 Usage](#usage) • [🤝 Contributing](#contributing)
+[🚀 Demo](#demo)  • [🚀 Quick Start](#quickstart) • [🤝 Contributing](#contributing)
 
 </div>
 
